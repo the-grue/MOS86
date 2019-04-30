@@ -1,2 +1,0 @@
-batecho off
-install

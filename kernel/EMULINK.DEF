@@ -1,4 +1,0 @@
-serial	equ	false
-emulink	equ	true
-mos	equ	false
-
