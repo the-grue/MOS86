@@ -11,8 +11,8 @@ set CCOMPL=%1
 set BDIR=%2
 set BORBIN=%3
 
-set INCLUDE=..\..\include;include
-set LIB=..\..\lib;libs
+set INCLUDE=include;build\include
+set LIB=lib;build\libs
 
 echo Copying missing files from sidecar
 echo to c:\distro
@@ -20,38 +20,45 @@ echo to c:\distro
 rem Sidecar holds files that have no source
 rem in the repo and the HELP.EXE which
 rem requires Turbo Pascal to rebuild
-copy latest\sidecar\*.* c:\distro
+copy apps\sidecar\*.* c:\distro
 
-echo Building Base Operating System
+echo Building Base Operating System Kernel
 
-rem Build serial, kernel, utilities, and drivers
-cd latest
+rem Build serial and kernel
+cd kernel
+kernmake.bat
+cd ..
+
+echo Building Base Operating System 
+
+rem Build utilities and drivers
+cd apps
 bosmake.bat
 cd ..
 
 rem Build ACU
-cd acu
+cd tools\acu
 makeacu.bat
-cd ..
+cd ..\..
 
 rem Build unterm terminal driver
-cd unterm
+cd tools\unterm
 makeutrm.bat
-cd ..
+cd ..\..
 
 rem Build import program
-cd import
+cd tools\import
 makeimp.bat
-cd ..
+cd ..\..
 
 set PATH=%BORBIN%;C:\BIN;C:\PCMOS
 rem Build ULIB library
-cd ulib
+cd tools\ulib
 genulib.bat %CCOMPL%
-cd ..
+cd ..\..
 
 rem Build cutils
-cd cutils
+cd tools\cutils
 
 make -f cutils.mak -Dbdir=%BDIR%
 
@@ -66,13 +73,13 @@ copy INSTALL.MSG %DIST%
 echo Distributing EXPORT.EXE
 copy EXPORT.EXE %DIST%
 
-cd ..
+cd ..\..
 
 rem Build CDLINK
 
-cd cdlink
+cd tools\cdlink
 asmcdmos.bat
-cd ..
+cd ..\..
 
 path=c:\bin;c:\pcmos
 rem Begin Distribution
