@@ -20,7 +20,7 @@ echo to c:\distro
 rem Sidecar holds files that have no source
 rem in the repo and the HELP.EXE which
 rem requires Turbo Pascal to rebuild
-copy apps\sidecar\*.* c:\distro
+copy sidecar\*.* c:\distro
 
 echo Building Base Operating System Kernel
 
