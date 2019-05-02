@@ -7,8 +7,8 @@ mkdir %TMP%
 set DIST=c:\DISTRO
 mkdir %DIST%
 
-set INCLUDE=..\..\..\include;..\include
-set LIB=..\..\..\lib;..\libs
+set INCLUDE=..\..\include;..\..\build\include
+set LIB=..\..\lib;..\..\build\libs
 
 make -f makeutrm.mak
 

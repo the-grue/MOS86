@@ -32,7 +32,7 @@ udir=..\ulib\\
 
 
 !if !$d(mdir)
-mdir=..\latest\\
+mdir=..\..\apps\\
 
 !endif
 
