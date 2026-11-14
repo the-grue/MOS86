@@ -19,3 +19,6 @@ netname.com:	netname.s version.inc
 
 serinfo.com:	serinfo.s
 	nasm -f bin serinfo.s -l serinfo.lst -o serinfo.com
+
+diskid.com:	diskid.s verschk.inc
+	nasm -f bin diskid.s -l diskid.lst -o diskid.com
