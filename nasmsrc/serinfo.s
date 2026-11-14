@@ -171,13 +171,13 @@ DP2:
 	
 	cmp	al,10
 	jae	DP3
-	mov	[cs:d_pnum_2],':'
-	mov	[cs:d_pnum_3],' '
+	mov	byte [cs:d_pnum_2],':'
+	mov	byte [cs:d_pnum_3],' '
 	add	al,'0'
 	mov	[cs:d_pnum_1],al
 	jmp	short DP4
 DP3:
-	mov	[cs:d_pnum_3],':'
+	mov	byte [cs:d_pnum_3],':'
 	mov	ah,'0'
 DP3Loop:
 	cmp	al,10
@@ -219,10 +219,10 @@ DP5:
 	mov	al,[cs:PR + prstruc.pirec_in]
 	cmp	al,0ffh
 	je	DP6a
-	mov	[cs:d_inhi],' '
+	mov	byte [cs:d_inhi],' '
 	cmp	al,10	
 	jb	DP6
-	mov	[cs:d_inhi],'1'
+	mov	byte [cs:d_inhi],'1'
 	sub	al,10
 DP6:
 	add	al,'0'
@@ -298,7 +298,7 @@ format_dec:
 	 push	cx
 	 mov	cx,6
 fdeclp:
-	 mov	[di],' '
+	 mov	byte [di],' '
 	 dec	di
 	 loop	fdeclp	 
 	 pop	cx
